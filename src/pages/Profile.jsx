@@ -24,7 +24,7 @@ function Profile() {
       ...editCredents,
       [name]: value,
     });
-  };
+  }
 
   function handleEdit() {
     fetch(
@@ -43,27 +43,24 @@ function Profile() {
         setLogin(data);
       });
     setEditState(false);
-  };
+  }
 
   function handlePassword() {
-    return 
+    return;
   }
 
   function handleDeleteAcc() {
     fetch(
-      `https://workflow-management-backend.herokuapp.com/update-user/${login["id"]}`,
+      `https://workflow-management-backend.herokuapp.com/delete-user/${login["id"]}`,
       {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editCredents),
+        method: "DELETE",
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setLogin(data);
+        setLogin({});
+        alert(data.status);
+        navigate("/");
       });
   }
 
@@ -109,10 +106,10 @@ function Profile() {
             <button onClick={() => setEditState(true)}>Edit Credentials</button>
           </>
         )}
-      <p>Job Role: {login["job_position"]}</p>
-      <p>Current Workflow: {login["current_workflow"]}</p>
-      <button onClick={handlePassword}>Change Password</button>
-      <button onClick={handleDeleteAcc}>Delete Account</button>
+        <p>Job Role: {login["job_position"]}</p>
+        <p>Current Workflow: {login["current_workflow"]}</p>
+        <button onClick={handlePassword}>Change Password</button>
+        <button onClick={handleDeleteAcc}>Delete Account</button>
       </div>
     </div>
   );
