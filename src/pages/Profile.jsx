@@ -13,7 +13,7 @@ function Profile() {
     return;
   }
 
-  const [editState, seteditState] = useState(false);
+  const [editState, setEditState] = useState(false);
   const [editCredents, setEditCredents] = useState({ ...login });
 
   function handleChange(e) {
@@ -32,7 +32,7 @@ function Profile() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(edit),
+        body: JSON.stringify(editCredents),
       }
     )
       .then((response) => response.json())
@@ -40,7 +40,7 @@ function Profile() {
         console.log(data);
         setLogin(data);
       });
-    seteditState(false);
+    setEditState(false);
   };
 
   function handlePassword() {
@@ -78,7 +78,7 @@ function Profile() {
               onChange={handleChange}
             />
             <button onClick={handleEdit}>Submit Changes</button>
-            <button onClick={() => seteditState(false)}>Cancel Edits</button>
+            <button onClick={() => setEditState(false)}>Cancel Edits</button>
           </>
         ) : (
           <>
@@ -86,7 +86,7 @@ function Profile() {
             <p>Last name: {login["last_name"]}</p>
             <p>Email: {login["email"]}</p>
 
-            <button onClick={() => seteditState(true)}>Edit Credentials</button>
+            <button onClick={() => setEditState(true)}>Edit Credentials</button>
           </>
         )}
       </div>
