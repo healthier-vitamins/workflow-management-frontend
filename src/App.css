@@ -42,6 +42,12 @@ nav {
   input {
     margin-left: 5px;
     margin-right: 5px;
+    
+  }
+
+  .label-field {
+    margin-bottom: 5px;
+    margin-top: 5px;
   }
 
   .profile-box {
@@ -86,3 +92,26 @@ button {
   .singup-right {
     display: inline-block;
   }
+
+  .create-project-form {
+    margin: auto;
+    width: max-content;
+    padding: 10px;
+  }
+
+  .create-project-field {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .project-input {
+    width: 30vw;
+  }
+
+  .stock-list-box {
+
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+
+  

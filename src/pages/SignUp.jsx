@@ -49,16 +49,16 @@ function SignUp() {
         <fieldset>
           <div className="signup-box">
             <div className="signup-left">
-              <label htmlFor="first_name">First Name</label>
+              <label htmlFor="first_name" className="label-field">First Name</label>
               <br />
               <br />
-              <label htmlFor="last_name">Last Name</label>
+              <label htmlFor="last_name" className="label-field">Last Name</label>
               <br />
               <br />
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="label-field">Email</label>
               <br />
               <br />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" className="label-field">Password</label>
               <br />
               <br />
               <button onClick={handleSubmit}>Submit</button>

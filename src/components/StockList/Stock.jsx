@@ -1,9 +1,9 @@
 function Stock({ stock }) {
   return (
     <div className="stock-list-box">
-      <p>{stock.id}</p>
-      <p>{stock.item}</p>
-      <p>{stock.quantity}</p>
+      <p>Stock ID: {stock.id}</p>
+      <p>Stock Item: {stock.item}</p>
+      <p>Quantity: {stock.quantity}</p>
     </div>
   );
 }

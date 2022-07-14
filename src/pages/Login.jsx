@@ -48,7 +48,7 @@ function Login() {
       <div className="login-container">
         <form onSubmit={(e) => e.preventDefault()} className="login-form">
           <fieldset>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className="label-field">Email</label>
             <input
               id="email"
               name="email"
@@ -60,7 +60,7 @@ function Login() {
             />
             <br/>
             <br/>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="label-field">Password</label>
             <input
               id="password"
               name="password"

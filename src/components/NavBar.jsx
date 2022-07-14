@@ -23,6 +23,7 @@ function NavBar() {
         ) : (
           <>
             <Link to="/stock-list">Stock List</Link>
+            <Link to="/projects">Projects</Link>
             <Link to="/profile-page">Profile</Link>
             <div className="navbar-right">
               <button onClick={handleClick}>Logout</button>

@@ -7,6 +7,8 @@ import SignUp from "./pages/SignUp";
 import StockList from "./pages/StockList";
 import { atom } from "jotai";
 import "./App.css";
+import Projects from "./pages/Projects";
+import CreateProject from "./pages/CreateProject";
 
 export const userAtom = atom({});
 
@@ -21,6 +23,8 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="/profile-page" element={<Profile />} />
             <Route path="/stock-list" element={<StockList />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/createproject" element={<CreateProject />} />
           </Route>
         </Routes>
       </BrowserRouter>

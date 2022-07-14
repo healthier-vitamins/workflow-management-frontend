@@ -120,13 +120,13 @@ function Profile() {
           <>
             <div className="profile-box">
               <div className="profile-left">
-                <label htmlFor="first_name">First Name:</label>
+                <label htmlFor="first_name" className="label-field">First Name:</label>
                 <br />
                 <br />
-                <label htmlFor="last_name">Last Name:</label>
+                <label htmlFor="last_name" className="label-field">Last Name:</label>
                 <br />
                 <br />
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email" className="label-field">Email:</label>
                 <br />
                 <br />
                 <button onClick={handleEdit}>Submit Changes</button>
@@ -140,6 +140,7 @@ function Profile() {
                   type="text"
                   value={editCredents["first_name"]}
                   onChange={handleChange}
+                  
                 />
                 <br />
                 <br />
@@ -197,13 +198,13 @@ function Profile() {
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="profile-box">
                 <div className="profile-left">
-                  <label htmlFor="old_password">Enter old password:</label>
+                  <label htmlFor="old_password" className="label-field">Enter old password:</label>
                   <br />
                   <br />
-                  <label htmlFor="new_password_first">Enter new password</label>
+                  <label htmlFor="new_password_first" className="label-field">Enter new password</label>
                   <br />
                   <br />
-                  <label htmlFor="new_password_second">
+                  <label htmlFor="new_password_second" className="label-field">
                     Enter new password again
                   </label>
                   <br />
