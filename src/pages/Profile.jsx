@@ -16,7 +16,15 @@ function Profile() {
   }
 
   const [editState, setEditState] = useState(false);
+  const [deleteState, setDeleteState] = useState(false);
   const [editCredents, setEditCredents] = useState({ ...login });
+
+  const [changePasswordState, setChangePasswordState] = useState(false);
+  const [passwordCredents, setPasswordCredents] = useState({
+    old_password: "",
+    new_password_first: "",
+    new_password_second: "",
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -45,8 +53,47 @@ function Profile() {
     setEditState(false);
   }
 
+  function handlePwChange(e) {
+    const { name, value } = e.target;
+    setPasswordCredents({
+      ...passwordCredents,
+      [name]: value,
+    });
+  }
+
   function handlePassword() {
-    return;
+    if (
+      passwordCredents.new_password_first !==
+      passwordCredents.new_password_second
+    ) {
+      alert("New passwords do not match");
+      setPasswordCredents({
+        old_password: "",
+        new_password_first: "",
+        new_password_second: "",
+      });
+    } else {
+      fetch(
+        `https://workflow-management-backend.herokuapp.com/change-password/${login["id"]}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(passwordCredents),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setLogin(data);
+          if (!login) {
+            return "Loading";
+          } else {
+            setChangePasswordState(false);
+            alert("Password changed");
+          }
+        });
+    }
   }
 
   function handleDeleteAcc() {
@@ -62,6 +109,7 @@ function Profile() {
         alert(data.status);
         navigate("/");
       });
+    setDeleteState(false);
   }
 
   return (
@@ -95,7 +143,7 @@ function Profile() {
               onChange={handleChange}
             />
             <button onClick={handleEdit}>Submit Changes</button>
-            <button onClick={() => setEditState(false)}>Cancel Edits</button>
+            <button onClick={() => setEditState(false)}>Cancel</button>
           </>
         ) : (
           <>
@@ -108,8 +156,60 @@ function Profile() {
         )}
         <p>Job Role: {login["job_position"]}</p>
         <p>Current Workflow: {login["current_workflow"]}</p>
-        <button onClick={handlePassword}>Change Password</button>
-        <button onClick={handleDeleteAcc}>Delete Account</button>
+
+        {changePasswordState ? (
+          <>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <fieldset>
+                <label htmlFor="old_password">Enter old password:</label>
+                <input
+                  id="old_password"
+                  name="old_password"
+                  type="password"
+                  value={passwordCredents["old_password"]}
+                  onChange={handlePwChange}
+                ></input>
+                <br />
+                <label htmlFor="new_password_first">Enter new password</label>
+                <input
+                  id="new_password_first"
+                  name="new_password_first"
+                  type="password"
+                  value={passwordCredents["new_password_first"]}
+                  onChange={handlePwChange}
+                ></input>
+                <br />
+                <label htmlFor="new_password_second">
+                  Enter new password again
+                </label>
+                <input
+                  id="new_password_second"
+                  name="new_password_second"
+                  type="password"
+                  value={passwordCredents["new_password_second"]}
+                  onChange={handlePwChange}
+                ></input>
+              </fieldset>
+            </form>
+            <button onClick={handlePassword}>Confirm</button>
+            <button onClick={() => setChangePasswordState(false)}>
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button onClick={() => setChangePasswordState(true)}>
+            Change Password
+          </button>
+        )}
+
+        {deleteState ? (
+          <>
+            <button onClick={handleDeleteAcc}>Confirm</button>
+            <button onClick={() => setDeleteState(false)}>Cancel</button>
+          </>
+        ) : (
+          <button onClick={() => setDeleteState(true)}>Delete Account</button>
+        )}
       </div>
     </div>
   );
