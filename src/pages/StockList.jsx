@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Stock from "../components/StockList/Stock";
 
-
 function StockList() {
   const [stockList, setStockList] = useState(null);
 
@@ -21,7 +20,9 @@ function StockList() {
   return (
     <div className="stock-list-page">
       <h2>Stock List</h2>
-      {stockList === null ? <p>Loading</p> : <ShowStocks />}
+      <div className="stock-list-container">
+        {stockList === null ? <p>Loading</p> : <ShowStocks />}
+      </div>
     </div>
   );
 }

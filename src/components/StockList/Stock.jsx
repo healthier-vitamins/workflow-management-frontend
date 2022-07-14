@@ -1,9 +1,10 @@
-function Stock ({stock}) {
-    return (
-        <div>
-            <p>{stock.id}</p>
-            <p>{stock.item}</p>
-        </div>
-    )
+function Stock({ stock }) {
+  return (
+    <div className="stock-list-box">
+      <p>{stock.id}</p>
+      <p>{stock.item}</p>
+      <p>{stock.quantity}</p>
+    </div>
+  );
 }
-export default Stock
+export default Stock;

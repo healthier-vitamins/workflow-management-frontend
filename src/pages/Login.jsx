@@ -34,6 +34,14 @@ function Login() {
         if (!login) {
           return "Loading";
         } else {
+          if (login.error === "Invalid email") {
+            alert(login.error);
+            navigate("/login");
+          }
+          if (login.error === "Invalid password") {
+            alert(login.error);
+            navigate("/login");
+          }
           navigate("/");
         }
       });

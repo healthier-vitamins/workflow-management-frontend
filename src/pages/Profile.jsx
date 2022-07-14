@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 function Profile() {
   const [login, setLogin] = useAtom(userAtom);
   let navigate = useNavigate();
+
+  // prevent direct url access
   if (login?.email === undefined) {
     useEffect(() => {
       navigate("/login");
@@ -45,6 +47,24 @@ function Profile() {
 
   function handlePassword() {
     return 
+  }
+
+  function handleDeleteAcc() {
+    fetch(
+      `https://workflow-management-backend.herokuapp.com/update-user/${login["id"]}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editCredents),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setLogin(data);
+      });
   }
 
   return (
@@ -89,10 +109,11 @@ function Profile() {
             <button onClick={() => setEditState(true)}>Edit Credentials</button>
           </>
         )}
-      </div>
       <p>Job Role: {login["job_position"]}</p>
       <p>Current Workflow: {login["current_workflow"]}</p>
       <button onClick={handlePassword}>Change Password</button>
+      <button onClick={handleDeleteAcc}>Delete Account</button>
+      </div>
     </div>
   );
 }

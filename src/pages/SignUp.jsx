@@ -1,6 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { userAtom } from "../App";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  let navigate = useNavigate()
+  const [login, setLogin] = useAtom({ userAtom });
   const [entry, setEntry] = useState({
     first_name: "",
     last_name: "",
@@ -26,15 +31,17 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("signup data", data);
+        setLogin(data)
+        if (!login) {
+          return "Loading";
+        } else {
+          if (login.error) {
+            alert(login.error)
+            navigate('/register-account')
+          }
+          navigate('/')
+        }
       });
-
-    setEntry({
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
-    });
   }
 
   return (
