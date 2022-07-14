@@ -5,27 +5,27 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import StockList from "./pages/StockList";
+import { atom } from "jotai";
 import "./App.css";
-import {atom} from "jotai"
 
-export const userAtom = atom({})
+export const userAtom = atom({});
 
 function App() {
-
   return (
-  <div className="App">
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<HomePage/>}/>
-          <Route path="/register-account" element={<SignUp/>}/>
-          <Route path="login" element={<Login/>}/>
-          <Route path="/profile-page" element={<Profile/>}/>
-          <Route path="/stock-list" element={<StockList/>}/>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </div>);
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/register-account" element={<SignUp />} />
+            <Route path="login" element={<Login />} />
+            <Route path="/profile-page" element={<Profile />} />
+            <Route path="/stock-list" element={<StockList />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
