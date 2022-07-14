@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import Layout from "../pages/Layout";
-import Login from "../pages/Login";
-import Profile from "../pages/Profile";
-import SignUp from "../pages/SignUp";
-import StockList from "../pages/StockList";
+import HomePage from "./pages/HomePage";
+import Layout from "./pages/Layout";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp";
+import StockList from "./pages/StockList";
 import "./App.css";
 
 function App() {

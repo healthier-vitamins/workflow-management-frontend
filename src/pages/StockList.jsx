@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Stock from "../src/components/StockList/Stock";
+import Stock from "../components/StockList/Stock";
+
 
 function StockList() {
   const [stockList, setStockList] = useState(null);
