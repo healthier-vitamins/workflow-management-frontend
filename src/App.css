@@ -1,0 +1,88 @@
+body {
+    text-align: center;
+  }
+
+nav {
+    background-color:#c8d5f2;
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 20px;
+  }
+  
+  nav a {
+    color: rgb(13, 15, 19);
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    color: #818fb2;
+  }
+
+  .navbar-right {
+    align-self: flex-end;
+    margin: auto 0 auto auto;
+  }
+
+  .login-container {
+    width:max-content;
+    margin: auto;
+  }
+
+  fieldset {
+    padding: 1em;
+    outline: none;
+    border: none;
+  }
+  
+  input {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .profile-box {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    width:60vw;
+    padding: 2em;
+    margin: auto;
+  }
+
+  .profile-left {
+    display: inline-block;
+    width: max-content;
+    margin-right: 2em;
+  }
+
+  .profile-right {
+    display: inline-block;
+  }
+
+button {
+    margin: 5px;
+}
+
+.signup-box {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    max-width: max-content;
+    padding: 2em;
+    margin: auto;
+
+  }
+
+  .signup-left {
+    display: inline-block;
+    width: max-content;
+    margin-right: 2em;
+  }
+
+  .singup-right {
+    display: inline-block;
+  }

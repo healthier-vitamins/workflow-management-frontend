@@ -1,7 +1,7 @@
 function HomePage() {
     return (
         <>
-        <p>homepage</p>
+        <p>Welcome to office management</p>
         </>
     )
 }

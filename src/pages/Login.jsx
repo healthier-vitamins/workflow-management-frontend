@@ -30,18 +30,13 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         setLogin(data);
-        if (!login) {
-          return "Loading";
+
+        if (data.error) {
+          alert(data.error);
+          navigate("/login");
         } else {
-          if (login.error === "Invalid email") {
-            alert(login.error);
-            navigate("/login");
-          }
-          if (login.error === "Invalid password") {
-            alert(login.error);
-            navigate("/login");
-          }
           navigate("/");
         }
       });
@@ -63,6 +58,8 @@ function Login() {
               onChange={handleChange}
               placeholder="Email"
             />
+            <br/>
+            <br/>
             <label htmlFor="password">Password</label>
             <input
               id="password"
@@ -73,6 +70,8 @@ function Login() {
               onChange={handleChange}
               placeholder="Password"
             />
+            <br/>
+            <br/>
             <button onClick={handleSubmit}>Login</button>
           </fieldset>
         </form>

@@ -118,88 +118,137 @@ function Profile() {
       <div className="profile-container">
         {editState ? (
           <>
-            <label htmlFor="first_name">First Name:</label>
-            <input
-              id="first_name"
-              name="first_name"
-              type="text"
-              value={editCredents["first_name"]}
-              onChange={handleChange}
-            />
-            <label htmlFor="last_name">Last Name:</label>
-            <input
-              id="last_name"
-              name="last_name"
-              type="text"
-              value={editCredents["last_name"]}
-              onChange={handleChange}
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={editCredents["email"]}
-              onChange={handleChange}
-            />
-            <button onClick={handleEdit}>Submit Changes</button>
-            <button onClick={() => setEditState(false)}>Cancel</button>
+            <div className="profile-box">
+              <div className="profile-left">
+                <label htmlFor="first_name">First Name:</label>
+                <br />
+                <br />
+                <label htmlFor="last_name">Last Name:</label>
+                <br />
+                <br />
+                <label htmlFor="email">Email:</label>
+                <br />
+                <br />
+                <button onClick={handleEdit}>Submit Changes</button>
+
+                <button onClick={() => setEditState(false)}>Cancel</button>
+              </div>
+              <div className="profile-right">
+                <input
+                  id="first_name"
+                  name="first_name"
+                  type="text"
+                  value={editCredents["first_name"]}
+                  onChange={handleChange}
+                />
+                <br />
+                <br />
+                <input
+                  id="last_name"
+                  name="last_name"
+                  type="text"
+                  value={editCredents["last_name"]}
+                  onChange={handleChange}
+                />
+                <br />
+                <br />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={editCredents["email"]}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
           </>
         ) : (
           <>
-            <p>First name: {login["first_name"]} </p>
-            <p>Last name: {login["last_name"]}</p>
-            <p>Email: {login["email"]}</p>
-
-            <button onClick={() => setEditState(true)}>Edit Credentials</button>
+            <div className="profile-box">
+              <div className="profile-left">
+                <p>First name: </p>
+                <p>Last name: </p>
+                <p>Email: </p>
+                <button onClick={() => setEditState(true)}>
+                  Edit Credentials
+                </button>
+              </div>
+              <div className="profile-right">
+                <p>{login["first_name"]} </p>
+                <p>{login["last_name"]}</p>
+                <p>{login["email"]}</p>
+              </div>
+            </div>
           </>
         )}
-        <p>Job Role: {login["job_position"]}</p>
-        <p>Current Workflow: {login["current_workflow"]}</p>
+        <div className="profile-box">
+          <div className="profile-left">
+            <p>Job Role: </p>
+            <p>Current Workflow: </p>
+          </div>
+          <div className="profile-right">
+            <p>{login["job_position"]}</p>
+            <p>{login["current_workflow"]}</p>
+          </div>
+        </div>
 
         {changePasswordState ? (
           <>
             <form onSubmit={(e) => e.preventDefault()}>
-              <fieldset>
-                <label htmlFor="old_password">Enter old password:</label>
-                <input
-                  id="old_password"
-                  name="old_password"
-                  type="password"
-                  value={passwordCredents["old_password"]}
-                  onChange={handlePwChange}
-                ></input>
-                <br />
-                <label htmlFor="new_password_first">Enter new password</label>
-                <input
-                  id="new_password_first"
-                  name="new_password_first"
-                  type="password"
-                  value={passwordCredents["new_password_first"]}
-                  onChange={handlePwChange}
-                ></input>
-                <br />
-                <label htmlFor="new_password_second">
-                  Enter new password again
-                </label>
-                <input
-                  id="new_password_second"
-                  name="new_password_second"
-                  type="password"
-                  value={passwordCredents["new_password_second"]}
-                  onChange={handlePwChange}
-                ></input>
-              </fieldset>
+              <div className="profile-box">
+                <div className="profile-left">
+                  <label htmlFor="old_password">Enter old password:</label>
+                  <br />
+                  <br />
+                  <label htmlFor="new_password_first">Enter new password</label>
+                  <br />
+                  <br />
+                  <label htmlFor="new_password_second">
+                    Enter new password again
+                  </label>
+                  <br />
+                  <br />
+                  <button onClick={handlePassword}>Confirm</button>
+                  <button onClick={() => setChangePasswordState(false)}>
+                    Cancel
+                  </button>
+                </div>
+                <div className="profile-right">
+                  <input
+                    id="old_password"
+                    name="old_password"
+                    type="password"
+                    value={passwordCredents["old_password"]}
+                    onChange={handlePwChange}
+                  ></input>
+                  <br />
+                  <br />
+                  <input
+                    id="new_password_first"
+                    name="new_password_first"
+                    type="password"
+                    value={passwordCredents["new_password_first"]}
+                    onChange={handlePwChange}
+                  ></input>
+                  <br />
+                  <br />
+                  <input
+                    id="new_password_second"
+                    name="new_password_second"
+                    type="password"
+                    value={passwordCredents["new_password_second"]}
+                    onChange={handlePwChange}
+                  ></input>
+                </div>
+              </div>
             </form>
-            <button onClick={handlePassword}>Confirm</button>
-            <button onClick={() => setChangePasswordState(false)}>
-              Cancel
-            </button>
           </>
         ) : (
-          <button onClick={() => setChangePasswordState(true)}>
-            Change Password
-          </button>
+          <div className="profile-box">
+            <button onClick={() => setChangePasswordState(true)}>
+              Change Password
+            </button>
+          </div>
         )}
 
         {deleteState ? (
