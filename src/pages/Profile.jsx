@@ -94,7 +94,7 @@ function Profile() {
       if (!checkPw) {
         return <p>"Loading"</p>
       }
-      if (checkPw.status) {
+      if (checkPw.status === "Pass") {
         fetch(
           `https://workflow-management-backend.herokuapp.com/change-password/${login["id"]}`,
           {
@@ -120,7 +120,7 @@ function Profile() {
               })
             }
           });
-      } else if (checkPw.error) {
+      } else if (checkPw.error === "Fail") {
         alert("Old password is wrong");
         setPasswordCredents({
           old_password: "",
