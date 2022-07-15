@@ -1,3 +1,3 @@
 # workflow-management-frontend
 <br />
-Verel: https://workflow-management-frontend.vercel.app/
+Vercel: https://workflow-management-frontend.vercel.app/
