@@ -89,9 +89,10 @@ function Profile() {
         .then((data) => {
           setCheckPw(data);
           // checked = data;
+        
         });
       if (!checkPw) {
-        return "Loading"
+        return <p>"Loading"</p>
       }
       if (checkPw.status) {
         fetch(
@@ -112,6 +113,11 @@ function Profile() {
             } else {
               setChangePasswordState(false);
               alert("Password changed");
+              setPasswordCredents({
+                old_password: "",
+                new_password_first: "",
+                new_password_second: "",
+              })
             }
           });
       } else if (checkPw.error) {
