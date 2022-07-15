@@ -30,9 +30,9 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-        setLogin(data);
 
+        setLogin(data);
+        console.log(login)
         if (data.error) {
           alert(data.error);
           navigate("/login");

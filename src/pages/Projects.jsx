@@ -1,6 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { userAtom } from "../App";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
 function Projects() {
+  const [login, setLogin] = useAtom(userAtom);
+    let navigate = useNavigate();
+
+  // prevent direct url access
+  if (login?.email === undefined) {
+    useEffect(() => {
+      navigate("/login");
+    }, []);
+    return;
+  }
+
   const [allProjects, setAllProjects] = useState({});
   const [entry, setEntry] = useState({
     services_required: "",
@@ -28,6 +42,11 @@ function Projects() {
       .then((data) => {
         console.log(data);
         setAllProjects(data);
+        setEntry({
+          services_required: "",
+          customer_company: "",
+          customer_poc_name: "",
+        });
       });
   }
 
@@ -78,7 +97,6 @@ function Projects() {
             <button onClick={handleSubmit}>Create Project</button>
           </fieldset>
         </form>
-        
       </div>
     </>
   );

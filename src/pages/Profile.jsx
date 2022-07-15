@@ -18,6 +18,7 @@ function Profile() {
   const [editState, setEditState] = useState(false);
   const [deleteState, setDeleteState] = useState(false);
   const [editCredents, setEditCredents] = useState({ ...login });
+  const [checkPw, setCheckPw] = useState(false);
 
   const [changePasswordState, setChangePasswordState] = useState(false);
   const [passwordCredents, setPasswordCredents] = useState({
@@ -62,6 +63,7 @@ function Profile() {
   }
 
   function handlePassword() {
+    // let checked;
     if (
       passwordCredents.new_password_first !==
       passwordCredents.new_password_second
@@ -74,9 +76,9 @@ function Profile() {
       });
     } else {
       fetch(
-        `https://workflow-management-backend.herokuapp.com/change-password/${login["id"]}`,
+        `https://workflow-management-backend.herokuapp.com/check-password/${login["id"]}`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -85,14 +87,41 @@ function Profile() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setLogin(data);
-          if (!login) {
-            return "Loading";
-          } else {
-            setChangePasswordState(false);
-            alert("Password changed");
-          }
+          setCheckPw(data);
+          // checked = data;
         });
+      if (!checkPw) {
+        return "Loading"
+      }
+      if (checkPw.status) {
+        fetch(
+          `https://workflow-management-backend.herokuapp.com/change-password/${login["id"]}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(passwordCredents),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            setLogin(data);
+            if (!login) {
+              return "Loading";
+            } else {
+              setChangePasswordState(false);
+              alert("Password changed");
+            }
+          });
+      } else if (checkPw.error) {
+        alert("Old password is wrong");
+        setPasswordCredents({
+          old_password: "",
+          new_password_first: "",
+          new_password_second: "",
+        });
+      }
     }
   }
 
@@ -120,13 +149,19 @@ function Profile() {
           <>
             <div className="profile-box">
               <div className="profile-left">
-                <label htmlFor="first_name" className="label-field">First Name:</label>
+                <label htmlFor="first_name" className="label-field">
+                  First Name:
+                </label>
                 <br />
                 <br />
-                <label htmlFor="last_name" className="label-field">Last Name:</label>
+                <label htmlFor="last_name" className="label-field">
+                  Last Name:
+                </label>
                 <br />
                 <br />
-                <label htmlFor="email" className="label-field">Email:</label>
+                <label htmlFor="email" className="label-field">
+                  Email:
+                </label>
                 <br />
                 <br />
                 <button onClick={handleEdit}>Submit Changes</button>
@@ -140,7 +175,6 @@ function Profile() {
                   type="text"
                   value={editCredents["first_name"]}
                   onChange={handleChange}
-                  
                 />
                 <br />
                 <br />
@@ -198,10 +232,14 @@ function Profile() {
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="profile-box">
                 <div className="profile-left">
-                  <label htmlFor="old_password" className="label-field">Enter old password:</label>
+                  <label htmlFor="old_password" className="label-field">
+                    Enter old password:
+                  </label>
                   <br />
                   <br />
-                  <label htmlFor="new_password_first" className="label-field">Enter new password</label>
+                  <label htmlFor="new_password_first" className="label-field">
+                    Enter new password
+                  </label>
                   <br />
                   <br />
                   <label htmlFor="new_password_second" className="label-field">
