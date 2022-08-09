@@ -5,7 +5,7 @@ function StockList() {
   const [stockList, setStockList] = useState(null);
 
   useEffect(() => {
-    fetch("https://workflow-management-backend.herokuapp.com/show-stock-list")
+    fetch("https://workflow-management-backend.herokuapp.com/stock-list")
       .then((response) => response.json())
       .then((data) => {
         setStockList(data);
