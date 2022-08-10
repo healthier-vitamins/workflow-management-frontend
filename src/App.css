@@ -114,4 +114,11 @@ button {
     padding: 15px;
   }
 
-  
+  .ag-grid-container {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    max-width: max-content;
+    padding: 2em;
+    margin: auto;
+  }
