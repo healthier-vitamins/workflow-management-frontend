@@ -87,47 +87,46 @@ function Profile() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setCheckPw(data);
+          // setCheckPw(data);
           // checked = data;
-        
-        });
-      if (!checkPw) {
-        return <p>"Loading"</p>
-      }
-      if (checkPw.status) {
-        fetch(
-          `https://workflow-management-backend.herokuapp.com/change-password/${login["id"]}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(passwordCredents),
+          if (!data) {
+            return <p>"Loading"</p>;
           }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            setLogin(data);
-            if (!login) {
-              return "Loading";
-            } else {
-              setChangePasswordState(false);
-              alert("Password changed");
-              setPasswordCredents({
-                old_password: "",
-                new_password_first: "",
-                new_password_second: "",
-              })
-            }
-          });
-      } else if (checkPw.error) {
-        alert("Old password is wrong");
-        setPasswordCredents({
-          old_password: "",
-          new_password_first: "",
-          new_password_second: "",
+          if (data.status) {
+            fetch(
+              `https://workflow-management-backend.herokuapp.com/change-password/${login["id"]}`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(passwordCredents),
+              }
+            )
+              .then((response) => response.json())
+              .then((loginData) => {
+                setLogin(loginData);
+                if (!login) {
+                  return "Loading";
+                } else {
+                  setChangePasswordState(false);
+                  alert("Password changed");
+                  setPasswordCredents({
+                    old_password: "",
+                    new_password_first: "",
+                    new_password_second: "",
+                  });
+                }
+              });
+          } else if (data.error) {
+            alert("Old password is wrong");
+            setPasswordCredents({
+              old_password: "",
+              new_password_first: "",
+              new_password_second: "",
+            });
+          }
         });
-      }
     }
   }
 

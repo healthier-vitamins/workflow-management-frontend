@@ -19,7 +19,7 @@ function StockList() {
       .then((response) => response.json())
       .then((data) => {
         setRowData(data);
-        console.log(data);
+        // console.log(data);
       });
   }, []);
 
