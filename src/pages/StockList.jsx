@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import Stock from "../components/StockList/Stock";
+// import Stock from "../components/StockList/Stock";
 import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed

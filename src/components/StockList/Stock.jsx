@@ -1,4 +1,5 @@
 function Stock({ stock }) {
+  //! replaced with ag-grid
   return (
     <div className="stock-list-box">
       <p>Stock ID: {stock.id}</p>
