@@ -31,7 +31,7 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setLogin(data);
+        // setLogin(data);
         if (data.status) {
           alert(data.status);
           navigate("/register-account");
